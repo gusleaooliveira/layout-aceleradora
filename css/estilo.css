@@ -1,6 +1,8 @@
 .conteudo { width: 450px; }
 .bar-vertical { display: block;  width: calc((750px - 450px) / 2); }
-.bar-horizontal ul{ display: inline;  }
+.bar-horizontal { display: flex;  justify-content: center; }
+.bar-horizontal li { text-decoration: none; }
+
 .largura { width: 750px; margin: auto; }
 
 article { border-bottom: 1px solid black; padding-bottom: 16px;}
