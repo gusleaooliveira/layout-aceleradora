@@ -1,7 +1,7 @@
 .conteudo { width: 450px; }
 .bar-vertical { display: block;  width: calc((750px - 450px) / 2); }
-.bar-horizontal { display: flex;  justify-content: center; }
-.bar-horizontal li { text-decoration: none; }
+.bar-horizontal ul { display: flex;  justify-content: center; }
+.bar-horizontal li { list-style: none; }
 
 .largura { width: 750px; margin: auto; }
 
