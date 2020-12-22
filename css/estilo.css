@@ -1,9 +1,11 @@
 .conteudo { width: 450px; }
-.bar-vertical { display: block;  width: calc((750px - 450px) / 2); }
+.conteudo-estender  { width: 700px; } 
+.bar-vertical { display: block;  width: calc((750px - 450px) / 2);  }
 .bar-horizontal ul { display: flex;  justify-content: center; }
 .bar-horizontal li { list-style: none; }
 
 .largura { width: 750px; margin: auto; }
+.largura-grande { width: 1000px; margin: auto; }
 
 article { border-bottom: 1px solid black; padding-bottom: 16px;}
 
@@ -12,3 +14,9 @@ article { border-bottom: 1px solid black; padding-bottom: 16px;}
 .clear { clear: both; }
 
 .float-left { float: left;  }
+
+.estender { height: calc(100vh - (35px + 70px)); }
+
+table { width: 100%; }
+table td {text-align: center;  }
+

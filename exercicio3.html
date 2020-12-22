@@ -1,0 +1,160 @@
+<!Doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://gusleaooliveira.github.io/hcw/css/hcw.min.css" />
+    <link rel="stylesheet" href="css/estilo.css" />
+    <title>Blog</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body class="largura-grande" >
+
+    <header class="padding-16 teal">
+        <h1 class="text-center">Blog</h1>
+    </header>
+    <nav class="nav bar-horizontal nav-center teal">
+        <ul>
+            <li><a href="" class="btn btn-block">Link 1</a></li>
+            <li><a href="" class="btn btn-block">Link 2</a></li>
+            <li><a href="" class="btn btn-block">Link 3</a></li>
+            <li><a href="" class="btn btn-block">Link 4</a></li>
+            <li><a href="" class="btn btn-block">Link 5</a></li>
+        </ul>
+    </nav>
+    <section class="">
+        <nav class="nav bar-vertical teal float-left estender">
+            <ul>
+                <li><a href="" class="btn btn-block">Link 1</a></li>
+                <li><a href="" class="btn btn-block">Link 2</a></li>
+                <li><a href="" class="btn btn-block">Link 3</a></li>
+                <li><a href="" class="btn btn-block">Link 4</a></li>
+                <li><a href="" class="btn btn-block">Link 5</a></li>
+            </ul>
+        </nav>
+        <section class="padding-16 conteudo-estender  float-left">
+            <article class="card light-gray padding-16" id="app">
+                <div id="">
+                    <label for="nome">Nome:</label>
+                    <input type="text" v-model="nome" id="nome" class="white input" placeholder="Nome do aluno" />
+                    
+                    <label for="semestre1">Nota 1:</label>
+                    <input type="number" v-model="semestre1" id="semestre1" max="10" min="0" step="0.1" class="white input" placeholder="Nota 1 do aluno" />
+
+                    <label for="semestre2">Nota 2:</label>
+                    <input type="number" v-model="semestre2" id="semestre2" max="10"  min="0" step="0.1" class="white input" placeholder="Nota 2 do aluno" />
+                   
+                    <label for="frequencia">Frequência:</label>
+                    <input type="number" v-model="frequencia" id="frequencia"  max="100" min="0" step="1" class="white input" placeholder="Frequência do aluno" />
+
+                    <input type="submit" value="Calcular" class="btn btn-block blue" v-on:click="adicionar">
+                </div>
+                <br/>
+                <caption><h3 class="text-center">Boletim</h3></caption>
+                <table class="table table-striped">
+                    <tr>
+                        <th></th>
+                        <th>Nome</th>
+                        <th>1º Semestre</th>
+                        <th>2º Semestre</th>
+                        <th>Nota Final</th>
+                        <th>Frequencia</th>
+                        <th>teste</th>
+                    </tr>
+                    <tr v-for="item in tabela" v-bind:style="{background: item.cor}" >
+                        <td >{{item._id}}</td>
+                        <td>{{item.nome | capitalize}}</td>
+                        <td>{{item.semestre1}}</td>
+                        <td>{{item.semestre2}}</td>
+                        <td>{{item.notaFinal}}</td>
+                        <td>{{item.frequencia}}</td>
+                        <td>{{item.cor}}</td>
+                    </tr>
+                </table>
+
+                <p class="padding-10 text-right">
+                    Início: <a href="index.html" class="text-blue">Início</a>
+                </p>
+            </article>
+        </section>
+        <aside class="nav bar-vertical teal float-left estender">
+            <ul>
+                <li><a href="" class="btn btn-block">Link 1</a></li>
+                <li><a href="" class="btn btn-block">Link 2</a></li>
+                <li><a href="" class="btn btn-block">Link 3</a></li>
+                <li><a href="" class="btn btn-block">Link 4</a></li>
+                <li><a href="" class="btn btn-block">Link 5</a></li>
+            </ul>
+        </aside>
+    </section>
+    <footer class="clear teal padding-16">
+        <p class="text-center">Criado por <a href="https://www.linktree.com.br/gusleaooliveira">Gustavo Leão </a> / 2020
+        </p>
+    </footer>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                nome: '',
+                semestre1: '',
+                semestre2: '',
+                notaFinal: '',
+                frequencia: '',
+                cont: 0,
+                cor: '',
+                tabela: [
+                    {_id: 0, nome: "", semestre1: 0, semestre2: 0, notaFinal: 0, frequencia: 0, cor: '' },
+                ]
+            },
+            methods: {
+                adicionar: function(){
+                    this.cont += 1;
+                    this.semestre1 = parseFloat(this.semestre1, 2)
+                    this.semestre2 = parseFloat(this.semestre2, 2)
+                    this.notaFinal = parseFloat(((this.semestre1 + this.semestre2) / 2), 2)
+                    if(this.notaFinal <= 5){
+                        this.cor='red'
+                    }
+                    else{
+                        this.cor='green'
+                    }
+
+                    this.tabela.push(
+                        {   
+                            _id: this.cont, 
+                            nome: this.nome, 
+                            semestre1: parseFloat(this.semestre1).toFixed(2), 
+                            semestre2: parseFloat(this.semestre2).toFixed(2),
+                            notaFinal: this.notaFinal.toFixed(2),
+                            frequencia: this.frequencia+"%",
+                            cor: this.cor
+                        })
+                    
+                    this.nome =  '';
+                    this.semestre1 =  '';
+                    this.semestre2 =  '';
+                    this.notaFinal =  '';
+                    this.frequencia =  '';
+                    this.cont =  0;
+                    this.cor =  '';
+                }
+            },
+            filters: {
+                capitalize: function (value) {
+                    if (!value) return ''
+                    value = value.toString()
+                    return value.charAt(0).toUpperCase() + value.slice(1)
+                }
+            }
+        })
+    </script>
+
+    
+
+</body>
+
+</html>
